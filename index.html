@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papelería Any - El Líbano, Tolima</title>
+    <meta name="description" content="Papelería Any - Tu papelería de confianza en El Líbano, Tolima. Útiles escolares, artículos de oficina y servicios de impresión.">
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/poppins@5.0.8/index.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/fredoka-one@5.0.8/index.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background: #f8f9fa; color: #333; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+        }
+        .logo svg { width: 40px; height: 40px; }
+        .logo h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .nav-btn {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        .cart-btn {
+            background: #ff6b6b;
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s;
+            font-size: 1.3rem;
+        }
+        .cart-btn:hover { transform: scale(1.1); background: #ee5a24; }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ffd32a;
+            color: #333;
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            padding: 60px 30px;
+            text-align: center;
+            color: white;
+        }
+        .hero h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; opacity: 0.95; }
+        .hero-subtitle {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero-subtext {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        /* Sections */
+        .section {
+            padding: 50px 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 15px;
+            border-radius: 15px;
+            color: white;
+        }
+        .section-title.escolar { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .section-title.oficina { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .section-title.impresion { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .product-img {
+            height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5.5rem;
+            position: relative;
+            overflow: hidden;
+            padding: 15px;
+        }
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .product-img.escolar-bg { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+        .product-img.oficina-bg { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); }
+        .product-img.impresion-bg { background: linear-gradient(135deg, #d4fc79, #96e6a1); }
+        .product-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            color: #2d3436;
+        }
+        .product-desc {
+            font-size: 0.85rem;
+            color: #636e72;
+            margin-bottom: 15px;
+            flex: 1;
+            line-height: 1.5;
+        }
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #6c5ce7;
+            margin-bottom: 12px;
+        }
+        .add-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        .add-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+        .add-btn:active { transform: scale(0.97); }
+
+        /* Cart Sidebar */
+        .cart-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .cart-overlay.active { display: block; opacity: 1; }
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 420px;
+            max-width: 90vw;
+            height: 100vh;
+            background: white;
+            z-index: 2001;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+        }
+        .cart-sidebar.active { right: 0; }
+        .cart-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-header h3 { font-size: 1.3rem; }
+        .close-cart {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+        .close-cart:hover { background: rgba(255,255,255,0.4); }
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .cart-item-icon {
+            font-size: 2rem;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .cart-item-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 4px;
+        }
+        .cart-item-details { flex: 1; }
+        .cart-item-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+        .cart-item-price { color: #6c5ce7; font-weight: 700; font-size: 0.95rem; }
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .qty-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .qty-btn:hover { background: #667eea; color: white; }
+        .qty-value { font-weight: 600; min-width: 25px; text-align: center; }
+        .remove-item {
+            background: #ff6b6b;
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .remove-item:hover { background: #ee5a24; transform: scale(1.1); }
+        .cart-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        .cart-empty-icon { font-size: 4rem; margin-bottom: 15px; }
+        .cart-footer {
+            padding: 25px;
+            border-top: 2px solid #eee;
+            background: #fafafa;
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2d3436;
+        }
+        .cart-total span:last-child { color: #6c5ce7; }
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .checkout-btn:hover { transform: scale(1.02); box-shadow: 0 5px 20px rgba(245,87,108,0.4); }
+        .checkout-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: white;
+            border-radius: 25px;
+            max-width: 550px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalIn 0.4s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.8) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 25px 25px 0 0;
+        }
+        .modal-header h3 { font-size: 1.5rem; margin-bottom: 5px; }
+        .modal-body { padding: 30px; }
+        .modal-total {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .modal-total-label { font-size: 0.9rem; color: #636e72; }
+        .modal-total-amount { font-size: 2rem; font-weight: 700; color: #6c5ce7; }
+        .modal-info {
+            background: #e8f4fd;
+            border-left: 4px solid #4facfe;
+            padding: 15px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 20px;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: #2d3436;
+        }
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: #2d3436;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .payment-option {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .payment-option:hover { border-color: #667eea; }
+        .payment-option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            color: #6c5ce7;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+        .btn-cancel {
+            flex: 1;
+            padding: 14px;
+            background: #f1f2f6;
+            color: #636e72;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .btn-cancel:hover { background: #dfe6e9; }
+        .btn-confirm {
+            flex: 1;
+            padding: 14px;
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .btn-confirm:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(67,233,123,0.4); }
+
+        /* Success Modal */
+        .success-modal .modal-header {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            animation: bounce 0.6s ease;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        .success-message {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .success-message h4 {
+            font-size: 1.3rem;
+            color: #2d3436;
+            margin-bottom: 15px;
+        }
+        .success-message p {
+            color: #636e72;
+            line-height: 1.7;
+            margin-bottom: 12px;
+            font-size: 0.92rem;
+        }
+        .success-highlight {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: 600;
+            color: #2d3436;
+            line-height: 1.6;
+        }
+        .btn-exit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        .btn-exit:hover { transform: scale(1.02); }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2d3436, #636e72);
+            color: white;
+            text-align: center;
+            padding: 40px 30px;
+            margin-top: 50px;
+        }
+        .footer h3 { font-family: 'Fredoka One', cursive; font-size: 1.5rem; margin-bottom: 10px; }
+        .footer p { opacity: 0.8; font-size: 0.9rem; }
+        .footer-zone {
+            margin-top: 6px;
+            font-size: 0.95rem;
+            opacity: 0.85;
+            font-weight: 500;
+        }
+        .footer-zone span {
+            background: rgba(255,255,255,0.15);
+            padding: 4px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .footer-schedule {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .footer-schedule-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+            color: #ffd32a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .footer-schedule-time {
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 0.95;
+            background: rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .footer-schedule-time .day {
+            color: #ffd32a;
+            font-weight: 700;
+        }
+        .footer-schedule-time .clock {
+            margin-left: 6px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            z-index: 5000;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header { flex-wrap: wrap; gap: 10px; padding: 12px 15px; }
+            .nav-buttons { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; }
+            .nav-btn { padding: 8px 14px; font-size: 0.8rem; }
+            .hero h2, .hero-subtitle { font-size: 1.8rem; }
+            .hero p, .hero-subtext { font-size: 1rem; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+            .product-img { height: 200px; font-size: 4rem; }
+            .section { padding: 30px 15px; }
+            .payment-methods { grid-template-columns: 1fr; }
+            .footer-schedule-time { font-size: 0.9rem; padding: 8px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="8" width="36" height="48" rx="3" fill="#ffd32a" stroke="white" stroke-width="2"/>
+                <rect x="14" y="14" width="28" height="4" rx="2" fill="white" opacity="0.7"/>
+                <rect x="14" y="22" width="28" height="4" rx="2" fill="white" opacity="0.7"/>
+                <rect x="14" y="30" width="20" height="4" rx="2" fill="white" opacity="0.7"/>
+                <path d="M42 20 L56 10 L56 42 L42 52 Z" fill="#ff6b6b" stroke="white" stroke-width="2"/>
+                <circle cx="50" cy="28" r="3" fill="white"/>
+            </svg>
+            <h1>Papelería Any</h1>
+        </div>
+        <nav class="nav-buttons">
+            <button class="nav-btn" onclick="scrollToSection('inicio')">🏠 Inicio</button>
+            <button class="nav-btn" onclick="scrollToSection('catalogo')">📦 Catálogo de Productos y Servicios</button>
+            <button class="nav-btn" onclick="scrollToSection('visitanos')">📍 Visítanos en el Líbano</button>
+        </nav>
+        <button class="cart-btn" onclick="toggleCart()">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <h2>✨ ¡Bienvenido a Papelería Any! ✨</h2>
+        <p>Tu papelería de confianza en El Líbano, Tolima. Útiles escolares, artículos de oficina y servicios de impresión. ¡Todo lo que necesitas en un solo lugar!</p>
+        <h2 class="hero-subtitle">Un gran catálogo que necesita hacerse escuchar</h2>
+        <p class="hero-subtext">En el corazón del Líbano, Tolima, existe un rincón lleno de vida y materiales listos para acompañar a la comunidad en su día a día. Desde los cuadernos y lápices indispensables para las clases, hasta las impresiones de última hora que salvan el día.</p>
+        <p class="hero-subtext" style="margin-top: 15px;">Damos el paso al entorno digital para que estudiantes, profesores y trabajadores puedan explorar nuestros servicios y ubicar la papelería fácilmente.</p>
+    </section>
+
+    <!-- Catálogo -->
+    <main id="catalogo">
+        <!-- Sección 1: Útiles Escolares -->
+        <section class="section">
+            <h2 class="section-title escolar">📚 Útiles Escolares</h2>
+            <div class="products-grid" id="escolarGrid"></div>
+        </section>
+
+        <!-- Sección 2: Oficina y Papelería -->
+        <section class="section">
+            <h2 class="section-title oficina">🏢 Oficina y Papelería</h2>
+            <div class="products-grid" id="oficinaGrid"></div>
+        </section>
+
+        <!-- Sección 3: Servicios de Impresión -->
+        <section class="section">
+            <h2 class="section-title impresion">🖨️ Servicios de Impresión</h2>
+            <div class="products-grid" id="impresionGrid"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="visitanos">
+        <h3>📍 Visítanos en El Líbano, Tolima</h3>
+        <p>Papelería Any - Tu aliado en útiles escolares, oficina e impresiones</p>
+        <div class="footer-zone">
+            <span>🏪 Cerca a la zona Comercial / Central</span>
+        </div>
+        <div class="footer-schedule">
+            <div class="footer-schedule-title">
+                🕐 Horario de Atención punto Físico:
+            </div>
+            <div class="footer-schedule-time">
+                <span class="day">Lunes a Sábado:</span>
+                <span class="clock">🕖 7:30 AM - 7:00 PM</span>
+            </div>
+        </div>
+        <p style="margin-top: 25px; opacity: 0.6; font-size: 0.85rem;">© 2026 Papelería Any. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Mi Carrito</h3>
+            <button class="close-cart" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn" onclick="openCheckout()" disabled>Finalizar Compra</button>
+        </div>
+    </aside>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>📋 Confirmar Compra</h3>
+                <p style="opacity:0.9; font-size:0.9rem;">Revisa tu pedido antes de confirmar</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-total">
+                    <div class="modal-total-label">Total de la compra</div>
+                    <div class="modal-total-amount" id="modalTotal">$0</div>
+                </div>
+                <div class="modal-info">
+                    📦 <strong>Coordinación de envío y pago:</strong> Una vez confirmada tu compra, nos pondremos en contacto contigo para coordinar el método de entrega.
+                </div>
+                <div class="form-group">
+                    <label>👤 Nombre Completo</label>
+                    <input type="text" id="clientName" placeholder="Ingresa tu nombre completo" required>
+                </div>
+                <div class="form-group">
+                    <label>📱 Teléfono</label>
+                    <input type="tel" id="clientPhone" placeholder="Ej: 310 123 4567" required>
+                </div>
+                <div class="form-group">
+                    <label>🏠 Dirección Completa</label>
+                    <input type="text" id="clientAddress" placeholder="Calle, carrera, número, barrio" required>
+                </div>
+                <div class="form-group">
+                    <label>💳 Método de Pago</label>
+                    <div class="payment-methods">
+                        <div class="payment-option" onclick="selectPayment(this, 'Nequi')" data-method="Nequi">📱 Nequi</div>
+                        <div class="payment-option" onclick="selectPayment(this, 'Daviplata')" data-method="Daviplata">📲 Daviplata</div>
+                        <div class="payment-option" onclick="selectPayment(this, 'ePayco')" data-method="ePayco">💳 ePayco</div>
+                        <div class="payment-option" onclick="selectPayment(this, 'Wompi')" data-method="Wompi">🏦 Wompi</div>
+                    </div>
+                </div>
+                <div class="modal-buttons">
+                    <button class="btn-cancel" onclick="closeCheckout()">Cancelar</button>
+                    <button class="btn-confirm" onclick="confirmPurchase()">✓ Confirmar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal success-modal">
+            <div class="modal-header">
+                <div class="success-icon">🎉</div>
+                <h3>¡Compra Exitosa!</h3>
+            </div>
+            <div class="modal-body">
+                <div class="success-message">
+                    <h4>¡Gracias por tu compra en Papelería Any!</h4>
+                    <p>✅ <strong>Su pedido ha sido recibido exitosamente.</strong></p>
+                    <p>📞 Nos pondremos en contacto con usted en los próximos minutos para coordinar el envío y la forma de pago.</p>
+                </div>
+                <div class="success-highlight">
+                    🌟 <strong>¡Papelería Any es el mejor sitio para comprar útiles Escolares, de Oficina y Trámites!</strong><br>
+                    Todo lo que necesite de última hora... <em>¡Aquí te salvamos el día!</em> 📚✏️🖨️
+                </div>
+                <button class="btn-exit" onclick="closeSuccess()">🏠 Salir y Volver al Inicio</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Product Data
+        const products = {
+            escolar: [
+                { id: 'e1', name: 'Cuadernos', icon: '📓', image: 'https://www.suescun.com.co/wp-content/uploads/2022/01/cuaderno-imagenes-cosido.jpg', desc: 'Cuadernos de 100 hojas, cuadriculados y rayados. Ideales para todas las materias.', price: 5500 },
+                { id: 'e2', name: 'Lapiceros', icon: '🖊️', image: 'https://www.suescun.com.co/wp-content/uploads/2025/07/Boligrafos-Kilometrico-2-700x700.png', desc: 'Lapiceros de tinta azul, negra y roja. Punta fina y resistente.', price: 1500 },
+                { id: 'e3', name: 'Lápices', icon: '✏️', image: 'https://www.grafitos.com.co/wp-content/uploads/2023/02/Punta-lapices-grafito.jpg', desc: 'Lápices de grafito #2 con borrador incluido. Paquete por unidad o docena.', price: 1200 },
+                { id: 'e4', name: 'Marcadores', icon: '🖍️', image: 'https://carulla.vtexassets.com/arquivos/ids/26033647/Marcador-Twintip-Pag-6-Lleve-8-45873_a.jpg?v=639233454743730000', desc: 'Marcadores de colores vibrantes, punta biselada. Perfectos para resaltar.', price: 3000 },
+                { id: 'e5', name: 'Carpetas', icon: '📁', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTziiZlZT0eXKVVyrPl5o8k4XCNR4Z-hC6wP5spFHlZwYiOX_Ti81co2wd&s=10', desc: 'Carpetas en cartón plastificado, con o sin broche. Varios colores.', price: 4000 }
+            ],
+            oficina: [
+                { id: 'o1', name: 'Resma Papel Carta', icon: '📄', image: 'https://media.falabella.com/sodimacCO/746579_01/w=1160', desc: 'Resma de 500 hojas de papel tamaño carta, 75g. Calidad premium.', price: 18000 },
+                { id: 'o2', name: 'Resma Papel Oficio', icon: '📃', image: 'https://media.falabella.com/sodimacCO/746526_26/w=1500,h=1500', desc: 'Resma de 500 hojas de papel tamaño oficio, 75g. Ideal para documentos.', price: 20000 },
+                { id: 'o3', name: 'Cosedoras', icon: '📎', image: 'https://http2.mlstatic.com/D_Q_NP_2X_940752-MLA111399395115_052026-P.webp', desc: 'Cosedoras metálicas de escritorio. Incluyen grapas. Resistentes y duraderas.', price: 12000 },
+                { id: 'o4', name: 'Ganchos (Clips)', icon: '🔗', image: 'https://todoenpapeleria.com.co/wp-content/uploads/2022/06/000957.jpg', desc: 'Caja de ganchos metálicos para sujetar documentos. Varios tamaños.', price: 3500 },
+                { id: 'o5', name: 'Sobres de Manila', icon: '📨', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKgHEgfO0x0Ys15j-_49SSxu-Rn6LTk7f08Fg9LOPwXqCs5jvAc8efUpYB&s=10', desc: 'Sobres de manila tamaño oficio y carta. Paquete de 10 unidades.', price: 6000 }
+            ],
+            impresion: [
+                { id: 'i1', name: 'Impresión B/N', icon: '🖨️', image: 'https://http2.mlstatic.com/D_NQ_NP_777622-MLA86243848616_062025-O.webp', desc: 'Impresiones a blanco y negro en alta calidad. Precio por hoja.', price: 200 },
+                { id: 'i2', name: 'Impresión a Color', icon: '🌈', image: 'https://imagoimpresiones.com/wp-content/uploads/2018/11/Color-nuevo-1.jpg', desc: 'Impresiones a full color en papel bond. Precio por hoja.', price: 800 },
+                { id: 'i3', name: 'Digitalización / Escáner', icon: '📠', image: 'https://blog.fundacionjuanxxiii.org/hubfs/IMAGENES%20DEL%20BLOG/_0004_Cuatro%20cosas%20que%20debes%20saber%20antes%20de%20una%20digitalizacion%20de%20documentos.jpg', desc: 'Servicio de escaneo y digitalización de documentos. Envío por correo.', price: 1500 },
+                { id: 'i4', name: 'Laminación', icon: '✨', image: 'https://matrixpapeleria.com/wp-content/uploads/2025/12/LAMINADO-DE-DOCUMENTOS-MATRIX-PAPELERIA-CALI-e1787288802746.jpeg', desc: 'Laminado de documentos en caliente. Protección brillante y duradera.', price: 3000 },
+                { id: 'i5', name: 'Plastificación', icon: '📋', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThwW9LvQdavumX_F1IsokZEbf2KKS3XbtBnwGPfC2gUeO0U7A37k2QP31Y&s=10', desc: 'Plastificación de documentos y fotos. Acabado profesional mate o brillante.', price: 4000 }
+            ]
+        };
+
+        let cart = [];
+        let selectedPayment = '';
+
+        // Scroll navigation
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({
+                    top: elementPosition - headerHeight,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Render Products
+        function renderProducts() {
+            renderGrid('escolarGrid', products.escolar, 'escolar-bg');
+            renderGrid('oficinaGrid', products.oficina, 'oficina-bg');
+            renderGrid('impresionGrid', products.impresion, 'impresion-bg');
+        }
+
+        function renderProductMedia(item) {
+            if (item.image) {
+                return `<img src="${item.image}" alt="${item.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='${item.icon}'">`;
+            }
+            return item.icon;
+        }
+
+        function renderGrid(gridId, items, bgClass) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = items.map(item => `
+                <div class="product-card">
+                    <div class="product-img ${bgClass}">${renderProductMedia(item)}</div>
+                    <div class="product-info">
+                        <div class="product-name">${item.name}</div>
+                        <div class="product-desc">${item.desc}</div>
+                        <div class="product-price">$${item.price.toLocaleString('es-CO')}</div>
+                        <button class="add-btn" onclick="addToCart('${item.id}')">🛒 Agregar al Carrito</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function findProduct(id) {
+            const all = [...products.escolar, ...products.oficina, ...products.impresion];
+            return all.find(p => p.id === id);
+        }
+
+        function addToCart(id) {
+            const product = findProduct(id);
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            updateCart();
+            showToast(`✅ ${product.name} agregado al carrito`);
+        }
+
+        function renderCartMedia(item) {
+            if (item.image) {
+                return `<img src="${item.image}" alt="${item.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='${item.icon}'">`;
+            }
+            return item.icon;
+        }
+
+        function updateCart() {
+            const countEl = document.getElementById('cartCount');
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            countEl.textContent = totalItems;
+
+            const cartItemsEl = document.getElementById('cartItems');
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = `
+                    <div class="cart-empty">
+                        <div class="cart-empty-icon">🛒</div>
+                        <p>Tu carrito está vacío</p>
+                        <p style="font-size:0.85rem; margin-top:8px;">¡Agrega productos para comenzar!</p>
+                    </div>`;
+            } else {
+                cartItemsEl.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-icon">${renderCartMedia(item)}</div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">$${(item.price * item.qty).toLocaleString('es-CO')}</div>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+                                <span class="qty-value">${item.qty}</span>
+                                <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-item" onclick="removeItem('${item.id}')">🗑️</button>
+                    </div>
+                `).join('');
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cartTotal').textContent = `$${total.toLocaleString('es-CO')}`;
+            document.getElementById('checkoutBtn').disabled = cart.length === 0;
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+                updateCart();
+            }
+        }
+
+        function removeItem(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCart();
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('active');
+            document.getElementById('cartOverlay').classList.toggle('active');
+        }
+
+        function openCheckout() {
+            if (cart.length === 0) return;
+            toggleCart();
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('modalTotal').textContent = `$${total.toLocaleString('es-CO')}`;
+            document.getElementById('checkoutModal').classList.add('active');
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModal').classList.remove('active');
+        }
+
+        function selectPayment(el, method) {
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedPayment = method;
+        }
+
+        function confirmPurchase() {
+            const name = document.getElementById('clientName').value.trim();
+            const phone = document.getElementById('clientPhone').value.trim();
+            const address = document.getElementById('clientAddress').value.trim();
+
+            if (!name || !phone || !address) {
+                showToast('⚠️ Por favor completa todos los campos');
+                return;
+            }
+            if (!selectedPayment) {
+                showToast('⚠️ Selecciona un método de pago');
+                return;
+            }
+
+            closeCheckout();
+            document.getElementById('successModal').classList.add('active');
+
+            // Reset
+            cart = [];
+            selectedPayment = '';
+            document.getElementById('clientName').value = '';
+            document.getElementById('clientPhone').value = '';
+            document.getElementById('clientAddress').value = '';
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            updateCart();
+        }
+
+        function closeSuccess() {
+            document.getElementById('successModal').classList.remove('active');
+            scrollToSection('inicio');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // Init
+        renderProducts();
+        updateCart();
+    </script>
+</body>
+</html>
